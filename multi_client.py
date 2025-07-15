@@ -2,6 +2,11 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.prebuilt import create_react_agent
 
 import asyncio
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 async def main():
     client = MultiServerMCPClient(
@@ -23,8 +28,8 @@ async def main():
     agent = create_react_agent("openai:gpt-4.1", tools)
     math_response = await agent.ainvoke({"messages": "what's (3 + 5) x 12?"})
     print("Math response:", math_response)
-    weather_response = await agent.ainvoke({"messages": "what is the weather in nyc?"})
-    print("Weather response:", weather_response)
+    # weather_response = await agent.ainvoke({"messages": "what is the weather in nyc?"})
+    # print("Weather response:", weather_response)
 
 if __name__ == "__main__":
     asyncio.run(main())
